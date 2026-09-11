@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BC41F425305461AA00FE25F8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41F424305461AA00FE25F8 /* Category.swift */; };
+		BC41F427305461E800FE25F8 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41F426305461E100FE25F8 /* Expense.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		BC41F3CB30544E3E00FE25F8 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC41F424305461AA00FE25F8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		BC41F426305461E100FE25F8 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -45,6 +52,7 @@
 		BC41F3C230544E3E00FE25F8 = {
 			isa = PBXGroup;
 			children = (
+				BC41F4233054618D00FE25F8 /* Models */,
 				BC41F3CD30544E3E00FE25F8 /* ExpenseTracker */,
 				BC41F3CC30544E3E00FE25F8 /* Products */,
 			);
@@ -56,6 +64,15 @@
 				BC41F3CB30544E3E00FE25F8 /* ExpenseTracker.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BC41F4233054618D00FE25F8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BC41F426305461E100FE25F8 /* Expense.swift */,
+				BC41F424305461AA00FE25F8 /* Category.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,6 +149,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC41F425305461AA00FE25F8 /* Category.swift in Sources */,
+				BC41F427305461E800FE25F8 /* Expense.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
