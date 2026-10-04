@@ -13,6 +13,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
+        // --- НАЧАЛО ТЕСТА CORE DATA ---
+            print("🧪 --- СТАРТ ТЕСТИРОВАНИЯ БАЗЫ ДАННЫХ ---")
+            
+        // 1. Создаем тестовый расход
+        let testExpense = Expense(
+            id: UUID(),
+            amount: 450.0,
+            category: .food,
+            date: Date(),
+            note: "Вкусный обед в кафе"
+        )
+        
+        // 2. Сохраняем его в базу данных через наш синглтон
+        StorageManager.shared.saveExpense(testExpense)
+        
+        // 3. Считываем все расходы из базы данных
+        let savedExpenses = StorageManager.shared.fetchExpenses()
+        
+        print("📈 Всего расходов в базе данных: \(savedExpenses.count)")
+        for (index, expense) in savedExpenses.enumerated() {
+            print("   🏷️ Расход [\(index + 1)]: \(expense.amount) ₽ | Категория: \(expense.category.rawValue) | Заметка: \(expense.note ?? "нет")")
+        }
+        print("🧪 --- КОНЕЦ ТЕСТИРОВАНИЯ БАЗЫ ДАННЫХ ---")
+        // --- КОНЕЦ ТЕСТА CORE DATA ---
+        
+        
         // 1. Проверяем, что пришедшая сцена — это UIWindowScene
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
