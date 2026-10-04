@@ -22,5 +22,5 @@ struct Expense {
     let date: Date
     
     /// Необязательный комментарий или заметка к трате
-    let comment: String?
+    let note: String?
 }
