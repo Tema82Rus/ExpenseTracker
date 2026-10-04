@@ -13,5 +13,6 @@ enum Category: String, CaseIterable {
     case food = "🍔 Еда"
     case transport = "🚕 Транспорт"
     case leisure = "🎬 Отдых"
+    case other = "🎲 Другое"
 }
 

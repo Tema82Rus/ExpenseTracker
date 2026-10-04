@@ -70,4 +70,43 @@ final class StorageManager {
         // Фиксируем изменения на жестком диске
         saveContext()
     }
+    
+    // MARK: - CRUD: Read (Чтение расходов)
+    
+    /// Метод извлекает все расходы из базы данных и трансформирует их в чистые структуры Expense.
+    /// - Returns: Массив чистых моделей Expense для UI-слоя.
+    func fetchExpenses() -> [Expense] {
+        // Создаем запрос на выборку данных из таблицы ExpenseEntity
+        let fetchRequest: NSFetchRequest<ExpenseEntity> = ExpenseEntity.fetchRequest()
+        
+        // (Опционально) Можно добавить сортировку по дате, чтобы новые расходы были сверху
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        do {
+            // Запрашиваем данные из контекста
+            let managedExpenses = try context.fetch(fetchRequest)
+            
+            // Data Mapping: Трансформируем массив [ExpenseEntity] в чистый [Expense] через .map
+            return managedExpenses.map { entity in
+                
+                // Безопасно восстанавливаем enum категории из строки.
+                // Если в базе вдруг окажется некорректная строка, сработает дефолтное значение .other
+                let categoryRawValue = entity.category ?? ""
+                let category = Category(rawValue: categoryRawValue) ?? .other
+                
+                return Expense(
+                    id: entity.id ?? UUID(),
+                    amount: entity.amount,
+                    category: category,
+                    date: entity.date ?? Date(),
+                    note: entity.note
+                )
+            }
+        } catch {
+            print("❌ Core Data: Ошибка при чтении данных: \(error.localizedDescription)")
+            return [] // В случае ошибки возвращаем пустой массив, чтобы приложение не падало
+        }
+    }
+
 }
