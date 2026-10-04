@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		BC41F425305461AA00FE25F8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41F424305461AA00FE25F8 /* Category.swift */; };
 		BC41F427305461E800FE25F8 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41F426305461E100FE25F8 /* Expense.swift */; };
+		BC74482D3072E58100094AD2 /* ExpenseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC74482B3072E58100094AD2 /* ExpenseModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BC41F3CB30544E3E00FE25F8 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC41F424305461AA00FE25F8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		BC41F426305461E100FE25F8 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		BC74482C3072E58100094AD2 /* ExpenseModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExpenseModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -52,6 +54,7 @@
 		BC41F3C230544E3E00FE25F8 = {
 			isa = PBXGroup;
 			children = (
+				BC74482A3072E52200094AD2 /* Resources */,
 				BC41F4233054618D00FE25F8 /* Models */,
 				BC41F3CD30544E3E00FE25F8 /* ExpenseTracker */,
 				BC41F3CC30544E3E00FE25F8 /* Products */,
@@ -73,6 +76,14 @@
 				BC41F424305461AA00FE25F8 /* Category.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		BC74482A3072E52200094AD2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BC74482B3072E58100094AD2 /* ExpenseModel.xcdatamodeld */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC41F425305461AA00FE25F8 /* Category.swift in Sources */,
+				BC74482D3072E58100094AD2 /* ExpenseModel.xcdatamodeld in Sources */,
 				BC41F427305461E800FE25F8 /* Expense.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,6 +374,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BC74482B3072E58100094AD2 /* ExpenseModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BC74482C3072E58100094AD2 /* ExpenseModel.xcdatamodel */,
+			);
+			currentVersion = BC74482C3072E58100094AD2 /* ExpenseModel.xcdatamodel */;
+			path = ExpenseModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BC41F3C330544E3E00FE25F8 /* Project object */;
 }
