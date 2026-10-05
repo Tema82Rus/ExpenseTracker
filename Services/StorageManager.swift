@@ -108,5 +108,33 @@ final class StorageManager {
             return [] // В случае ошибки возвращаем пустой массив, чтобы приложение не падало
         }
     }
-
+    
+    // MARK: - CRUD: Delete (Удаление расхода)
+    
+    /// Метод находит расход в базе данных по его уникальному ID и удаляет его.
+    /// - Parameter id: Уникальный идентификатор расхода (UUID).
+    func deleteExpense(withId id: UUID) {
+        // Создаем запрос на выборку именно той сущности, у которой совпадает ID
+        let fetchRequest: NSFetchRequest<ExpenseEntity> = ExpenseEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        
+        do {
+            // Ищем объект в контексте
+            let results = try context.fetch(fetchRequest)
+            
+            // Если объект найден, удаляем его из контекста
+            if let entityToDelete = results.first {
+                context.delete(entityToDelete)
+                
+                // Фиксируем удаление на жестком диске
+                saveContext()
+                print("🗑️ Core Data: Расход с ID \(id) успешно удален из базы.")
+            } else {
+                print("⚠️ Core Data: Расход для удаления с ID \(id) не найден.")
+            }
+        } catch {
+            print("❌ Core Data: Ошибка при попытке удаления объекта: \(error.localizedDescription)")
+        }
+    }
+    
 }
