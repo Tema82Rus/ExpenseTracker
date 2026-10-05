@@ -13,6 +13,8 @@
 		BC74484A3072F62500094AD2 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7448493072F62500094AD2 /* StorageManager.swift */; };
 		BC7448883073BA0200094AD2 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7448873073BA0200094AD2 /* MainPresenter.swift */; };
 		BC74488A3073BB3100094AD2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7448893073BB3100094AD2 /* MainViewController.swift */; };
+		BCFA406930743735002468A3 /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA406830743735002468A3 /* ExpenseTableViewCell.swift */; };
+		BCFA406B307438AD002468A3 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA406A307438AD002468A3 /* Formatters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		BC7448493072F62500094AD2 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		BC7448873073BA0200094AD2 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		BC7448893073BB3100094AD2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		BCFA406830743735002468A3 /* ExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewCell.swift; sourceTree = "<group>"; };
+		BCFA406A307438AD002468A3 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -90,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				BC74482B3072E58100094AD2 /* ExpenseModel.xcdatamodeld */,
+				BCFA406A307438AD002468A3 /* Formatters.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -113,10 +118,19 @@
 		BC7448863073B9EE00094AD2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				BCFA406730743722002468A3 /* Cell */,
 				BC7448873073BA0200094AD2 /* MainPresenter.swift */,
 				BC7448893073BB3100094AD2 /* MainViewController.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		BCFA406730743722002468A3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BCFA406830743735002468A3 /* ExpenseTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,7 +207,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCFA406930743735002468A3 /* ExpenseTableViewCell.swift in Sources */,
 				BC41F425305461AA00FE25F8 /* Category.swift in Sources */,
+				BCFA406B307438AD002468A3 /* Formatters.swift in Sources */,
 				BC7448883073BA0200094AD2 /* MainPresenter.swift in Sources */,
 				BC74484A3072F62500094AD2 /* StorageManager.swift in Sources */,
 				BC74488A3073BB3100094AD2 /* MainViewController.swift in Sources */,
