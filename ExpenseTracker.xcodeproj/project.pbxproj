@@ -11,6 +11,8 @@
 		BC41F427305461E800FE25F8 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41F426305461E100FE25F8 /* Expense.swift */; };
 		BC74482D3072E58100094AD2 /* ExpenseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC74482B3072E58100094AD2 /* ExpenseModel.xcdatamodeld */; };
 		BC74484A3072F62500094AD2 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7448493072F62500094AD2 /* StorageManager.swift */; };
+		BC7448883073BA0200094AD2 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7448873073BA0200094AD2 /* MainPresenter.swift */; };
+		BC74488A3073BB3100094AD2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7448893073BB3100094AD2 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		BC41F426305461E100FE25F8 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		BC74482C3072E58100094AD2 /* ExpenseModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExpenseModel.xcdatamodel; sourceTree = "<group>"; };
 		BC7448493072F62500094AD2 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		BC7448873073BA0200094AD2 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
+		BC7448893073BB3100094AD2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -56,6 +60,7 @@
 		BC41F3C230544E3E00FE25F8 = {
 			isa = PBXGroup;
 			children = (
+				BC7448853073B9DC00094AD2 /* Modules */,
 				BC7448483072F5FF00094AD2 /* Services */,
 				BC74482A3072E52200094AD2 /* Resources */,
 				BC41F4233054618D00FE25F8 /* Models */,
@@ -95,6 +100,23 @@
 				BC7448493072F62500094AD2 /* StorageManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		BC7448853073B9DC00094AD2 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				BC7448863073B9EE00094AD2 /* Main */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		BC7448863073B9EE00094AD2 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				BC7448873073BA0200094AD2 /* MainPresenter.swift */,
+				BC7448893073BB3100094AD2 /* MainViewController.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,7 +194,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC41F425305461AA00FE25F8 /* Category.swift in Sources */,
+				BC7448883073BA0200094AD2 /* MainPresenter.swift in Sources */,
 				BC74484A3072F62500094AD2 /* StorageManager.swift in Sources */,
+				BC74488A3073BB3100094AD2 /* MainViewController.swift in Sources */,
 				BC74482D3072E58100094AD2 /* ExpenseModel.xcdatamodeld in Sources */,
 				BC41F427305461E800FE25F8 /* Expense.swift in Sources */,
 			);
