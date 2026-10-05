@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BC41F425305461AA00FE25F8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41F424305461AA00FE25F8 /* Category.swift */; };
+		BC41F427305461E800FE25F8 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41F426305461E100FE25F8 /* Expense.swift */; };
+		BC74482D3072E58100094AD2 /* ExpenseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC74482B3072E58100094AD2 /* ExpenseModel.xcdatamodeld */; };
+		BC74484A3072F62500094AD2 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7448493072F62500094AD2 /* StorageManager.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		BC41F3CB30544E3E00FE25F8 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC41F424305461AA00FE25F8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		BC41F426305461E100FE25F8 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		BC74482C3072E58100094AD2 /* ExpenseModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExpenseModel.xcdatamodel; sourceTree = "<group>"; };
+		BC7448493072F62500094AD2 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -45,6 +56,9 @@
 		BC41F3C230544E3E00FE25F8 = {
 			isa = PBXGroup;
 			children = (
+				BC7448483072F5FF00094AD2 /* Services */,
+				BC74482A3072E52200094AD2 /* Resources */,
+				BC41F4233054618D00FE25F8 /* Models */,
 				BC41F3CD30544E3E00FE25F8 /* ExpenseTracker */,
 				BC41F3CC30544E3E00FE25F8 /* Products */,
 			);
@@ -56,6 +70,31 @@
 				BC41F3CB30544E3E00FE25F8 /* ExpenseTracker.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BC41F4233054618D00FE25F8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BC41F426305461E100FE25F8 /* Expense.swift */,
+				BC41F424305461AA00FE25F8 /* Category.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BC74482A3072E52200094AD2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BC74482B3072E58100094AD2 /* ExpenseModel.xcdatamodeld */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BC7448483072F5FF00094AD2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BC7448493072F62500094AD2 /* StorageManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,6 +171,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC41F425305461AA00FE25F8 /* Category.swift in Sources */,
+				BC74484A3072F62500094AD2 /* StorageManager.swift in Sources */,
+				BC74482D3072E58100094AD2 /* ExpenseModel.xcdatamodeld in Sources */,
+				BC41F427305461E800FE25F8 /* Expense.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,7 +193,6 @@
 				INFOPLIST_FILE = ExpenseTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -182,7 +224,6 @@
 				INFOPLIST_FILE = ExpenseTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -345,6 +386,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BC74482B3072E58100094AD2 /* ExpenseModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BC74482C3072E58100094AD2 /* ExpenseModel.xcdatamodel */,
+			);
+			currentVersion = BC74482C3072E58100094AD2 /* ExpenseModel.xcdatamodel */;
+			path = ExpenseModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BC41F3C330544E3E00FE25F8 /* Project object */;
 }
