@@ -94,19 +94,14 @@ final class ExpenseTableViewCell: UITableViewCell {
     
     // 5. Конфигурация ячейки данными
     func configure(with expense: Expense, amountText: String) {
+        // Просто берем текст и иконку напрямую из enum!
+        iconLabel.text = expense.category.icon
         categoryLabel.text = expense.category.rawValue
-        noteLabel.text = expense.note ?? "Без комментария"
+        
+        noteLabel.text = expense.note ?? ""
         noteLabel.isHidden = (expense.note == nil || expense.note!.isEmpty)
         
         amountLabel.text = "-\(amountText)"
-        amountLabel.textColor = .systemRed // Траты традиционно подсвечиваем красным
-        
-        // Подбираем системный эмодзи-значок под категорию
-        switch expense.category {
-        case .food: iconLabel.text = "🍔"
-        case .transport: iconLabel.text = "🚕"
-        case .leisure: iconLabel.text = "🎬"
-        case .other: iconLabel.text = "📦"
-        }
+        amountLabel.textColor = .systemRed
     }
 }
