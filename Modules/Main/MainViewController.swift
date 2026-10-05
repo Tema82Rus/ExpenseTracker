@@ -16,10 +16,11 @@ final class MainViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        // Регистрируем дефолтную ячейку (кастомную сделаем в День 9)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
+        tableView.register(ExpenseTableViewCell.self, forCellReuseIdentifier: "ExpenseCell")
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = UITableView.automaticDimension // Автоматическая высота ячейки под контент
+        tableView.estimatedRowHeight = 60
         return tableView
     }()
     
@@ -63,11 +64,18 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseCell", for: indexPath) as? ExpenseTableViewCell else { return UITableViewCell() }
         
+        // Получаем чистую модель расхода от презентера
         if let expense = presenter?.getExpense(at: indexPath.row) {
-            // Временное простое отображение данных (в День 9 заменим на красивую верстку)
-            cell.textLabel?.text = "\(expense.amount) ₽ — \(expense.category.rawValue)"
+            
+            // Форматируем сумму с помощью созданного NumberFormatter расширения
+            let amountNumber = NSNumber(value: expense.amount)
+            // Если форматер по какой-то причине вернет nil, подстрахуемся простой строкой
+            let formattedAmount = NumberFormatter.expenseCurrency.string(from: amountNumber) ?? "\(expense.amount) ₽"
+            
+            // Настраиваем ячейку данными
+            cell.configure(with: expense, amountText: formattedAmount)
         }
         
         return cell
