@@ -17,6 +17,7 @@
 		BCFA406B307438AD002468A3 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA406A307438AD002468A3 /* Formatters.swift */; };
 		BCFA408830754AE0002468A3 /* AddExpensePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA408730754AE0002468A3 /* AddExpensePresenter.swift */; };
 		BCFA408A30754B26002468A3 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA408930754B26002468A3 /* AddExpenseViewController.swift */; };
+		BCFA40A6307553F5002468A3 /* AddExpenseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA40A5307553F5002468A3 /* AddExpenseDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		BCFA406A307438AD002468A3 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		BCFA408730754AE0002468A3 /* AddExpensePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensePresenter.swift; sourceTree = "<group>"; };
 		BCFA408930754B26002468A3 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
+		BCFA40A5307553F5002468A3 /* AddExpenseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -143,6 +145,7 @@
 			children = (
 				BCFA408730754AE0002468A3 /* AddExpensePresenter.swift */,
 				BCFA408930754B26002468A3 /* AddExpenseViewController.swift */,
+				BCFA40A5307553F5002468A3 /* AddExpenseDelegate.swift */,
 			);
 			path = AddExpense;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				BCFA406B307438AD002468A3 /* Formatters.swift in Sources */,
 				BCFA408A30754B26002468A3 /* AddExpenseViewController.swift in Sources */,
 				BC7448883073BA0200094AD2 /* MainPresenter.swift in Sources */,
+				BCFA40A6307553F5002468A3 /* AddExpenseDelegate.swift in Sources */,
 				BC74484A3072F62500094AD2 /* StorageManager.swift in Sources */,
 				BCFA408830754AE0002468A3 /* AddExpensePresenter.swift in Sources */,
 				BC74488A3073BB3100094AD2 /* MainViewController.swift in Sources */,
