@@ -15,6 +15,8 @@
 		BC74488A3073BB3100094AD2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7448893073BB3100094AD2 /* MainViewController.swift */; };
 		BCFA406930743735002468A3 /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA406830743735002468A3 /* ExpenseTableViewCell.swift */; };
 		BCFA406B307438AD002468A3 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA406A307438AD002468A3 /* Formatters.swift */; };
+		BCFA408830754AE0002468A3 /* AddExpensePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA408730754AE0002468A3 /* AddExpensePresenter.swift */; };
+		BCFA408A30754B26002468A3 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA408930754B26002468A3 /* AddExpenseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		BC7448893073BB3100094AD2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BCFA406830743735002468A3 /* ExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewCell.swift; sourceTree = "<group>"; };
 		BCFA406A307438AD002468A3 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
+		BCFA408730754AE0002468A3 /* AddExpensePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensePresenter.swift; sourceTree = "<group>"; };
+		BCFA408930754B26002468A3 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -110,6 +114,7 @@
 		BC7448853073B9DC00094AD2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				BCFA408630754AAF002468A3 /* AddExpense */,
 				BC7448863073B9EE00094AD2 /* Main */,
 			);
 			path = Modules;
@@ -131,6 +136,15 @@
 				BCFA406830743735002468A3 /* ExpenseTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		BCFA408630754AAF002468A3 /* AddExpense */ = {
+			isa = PBXGroup;
+			children = (
+				BCFA408730754AE0002468A3 /* AddExpensePresenter.swift */,
+				BCFA408930754B26002468A3 /* AddExpenseViewController.swift */,
+			);
+			path = AddExpense;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,8 +224,10 @@
 				BCFA406930743735002468A3 /* ExpenseTableViewCell.swift in Sources */,
 				BC41F425305461AA00FE25F8 /* Category.swift in Sources */,
 				BCFA406B307438AD002468A3 /* Formatters.swift in Sources */,
+				BCFA408A30754B26002468A3 /* AddExpenseViewController.swift in Sources */,
 				BC7448883073BA0200094AD2 /* MainPresenter.swift in Sources */,
 				BC74484A3072F62500094AD2 /* StorageManager.swift in Sources */,
+				BCFA408830754AE0002468A3 /* AddExpensePresenter.swift in Sources */,
 				BC74488A3073BB3100094AD2 /* MainViewController.swift in Sources */,
 				BC74482D3072E58100094AD2 /* ExpenseModel.xcdatamodeld in Sources */,
 				BC41F427305461E800FE25F8 /* Expense.swift in Sources */,
