@@ -138,6 +138,8 @@ final class AddExpenseViewController: UIViewController {
         title = "Новый расход"
         view.backgroundColor = .systemBackground
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отмена", style: .plain, target: self, action: #selector(cancelButtonTapped))
+        
         view.addSubview(titleLabel)
         view.addSubview(amountTextField)
         view.addSubview(dividerView)
@@ -197,6 +199,11 @@ final class AddExpenseViewController: UIViewController {
         updateCategoryButtonsUI()
     }
     
+    @objc private func cancelButtonTapped() {
+        // Закрываем модальный экран
+        dismiss(animated: true, completion: nil)
+    }
+    
     // Визуальное обновление кнопок: выбранная подсвечивается, остальные тусклые
     private func updateCategoryButtonsUI() {
         for (index, button) in categoryButtons.enumerated() {
@@ -235,15 +242,20 @@ final class AddExpenseViewController: UIViewController {
         let note = noteTextField.text
         let date = datePicker.date
         
-        // Передаем собранные и валидированные данные в презентер (логику сохранения напишем в день 13)
-        print("💡 Собраны данные для сохранения: \(amount) ₽, Категория: \(selectedCategory.rawValue), Заметка: \(note ?? "")")
+        // Передаем данные в презентер
+        presenter?.saveExpense(amount: amount, category: selectedCategory, date: date, note: note)
+        
+        // Закрываем экран после успешного сохранения
+        dismiss(animated: true, completion: nil)
     }
 }
 
 // MARK: - AddExpenseViewProtocol
 extension AddExpenseViewController: AddExpenseViewProtocol {
     func showError(_ message: String) {
-        // Сюда мы позже добавим вывод UIAlertController при ошибках валидации
+        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ОК", style: .default))
+        present(alert, animated: true)
     }
 }
 
@@ -254,7 +266,7 @@ import SwiftUI
 #Preview {
     // Создаем цепочку MVP прямо внутри превью
     let addExpenseVC = AddExpenseViewController()
-    let presenter = AddExpensePresenter(view: addExpenseVC)
+    let presenter = AddExpensePresenter(view: addExpenseVC, delegate: nil)
     addExpenseVC.presenter = presenter
     
     // Заворачиваем в NavigationController, чтобы видеть верхний бар

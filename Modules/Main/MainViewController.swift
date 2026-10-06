@@ -36,6 +36,8 @@ final class MainViewController: UIViewController {
         title = "Мои Расходы"
         view.backgroundColor = .systemBackground
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addExpenseButtonTapped))
+        
         // Добавляем таблицу на экран
         view.addSubview(tableView)
         
@@ -47,12 +49,35 @@ final class MainViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
+    // MARK: - Actions
+    /// Действие по нажатию на кнопку "+"
+    @objc private func addExpenseButtonTapped() {
+        let addExpenseVC = AddExpenseViewController()
+        
+        // Инициализируем презентер и передаем self (MainViewController) в качестве делегата!
+        let addPresenter = AddExpensePresenter(view: addExpenseVC, delegate: self)
+        addExpenseVC.presenter = addPresenter
+        
+        // Оборачиваем в NavigationController для красивого отображения бара
+        let navigationController = UINavigationController(rootViewController: addExpenseVC)
+        
+        // Открываем модально
+        present(navigationController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
     func reloadData() {
         tableView.reloadData()
+    }
+}
+
+extension MainViewController: AddExpenseDelegate {
+    func didSaveNewExpense() {
+        // Когда экран добавления сохраняет расход, мы просим наш презентер обновить данные из базы
+        presenter?.viewDidLoad()
     }
 }
 
