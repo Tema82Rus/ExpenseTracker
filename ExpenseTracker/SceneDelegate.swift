@@ -20,10 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 2. Создаем окно размером во весь экран
         let window = UIWindow(windowScene: windowScene)
         
-        // 3. Создаем пустой экран и красим его в системный белый/черный цвет
-        let mainVC = UIViewController()
-        mainVC.view.backgroundColor = .systemBackground
-        mainVC.title = "Мои Расходы" // Добавим заголовок для наглядности
+        // 3. Создаем основной экран и связываем его с Presenter
+        let mainVC = MainViewController()
+        let presenter = MainPresenter(view: mainVC)
+        mainVC.presenter = presenter
         
         // 4. Оборачиваем экран в UINavigationController
         let navigationController = UINavigationController(rootViewController: mainVC)
