@@ -17,6 +17,7 @@ protocol MainPresenterProtocol: AnyObject {
     var numberOfExpenses: Int { get }
     func viewDidLoad()
     func getExpense(at index: Int) -> Expense
+    func deleteExpense(at index: Int)
 }
 
 final class MainPresenter: MainPresenterProtocol {
@@ -49,5 +50,16 @@ final class MainPresenter: MainPresenterProtocol {
         self.expenses = StorageManager.shared.fetchExpenses()
         // Говорим экрану обновиться
         self.view?.reloadData()
+    }
+    
+    func deleteExpense(at index: Int) {
+        // 1. Получаем удаляемый расход из массива
+        let expenseToDelete = expenses[index]
+        
+        // 2. Удаляем его физически из базы данных Core Data по UUID
+        StorageManager.shared.deleteExpense(withId: expenseToDelete.id)
+        
+        // 3. Удаляем его локально из массива презентера, чтобы данные синхронизировались
+        expenses.remove(at: index)
     }
 }

@@ -105,5 +105,32 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        // Создаем действие удаления
+        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") { [weak self] (action, view, completionHandler) in
+            guard let self = self else { return }
+            
+            // 1. Передаем команду удаления в презентер
+            self.presenter?.deleteExpense(at: indexPath.row)
+            
+            // 2. Красиво анимированно удаляем строку из интерфейса таблицы
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            // Оповещаем систему, что действие успешно завершено
+            completionHandler(true)
+        }
+        
+        // Настраиваем внешний вид кнопки свайпа
+        deleteAction.image = UIImage(systemName: "trash.fill") // Системная иконка корзины
+        deleteAction.backgroundColor = .systemRed
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        // Запрещаем полное смахивание до края экрана во избежание случайных удалений
+        configuration.performsFirstActionWithFullSwipe = false
+        
+        return configuration
+    }
 }
 
