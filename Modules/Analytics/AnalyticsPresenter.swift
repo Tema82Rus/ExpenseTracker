@@ -20,35 +20,39 @@ protocol AnalyticsPresenterProtocol: AnyObject {
 
 final class AnalyticsPresenter: AnalyticsPresenterProtocol {
     
-    // 🛡️ Защита от утечек памяти: ссылка на View обязательно weak
     private weak var view: AnalyticsViewProtocol?
     
     init(view: AnalyticsViewProtocol) {
         self.view = view
+        // 🌟 Подписываемся на уведомление об изменении базы данных Core Data
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDataUpdate), name: .didUpdateCoreData, object: nil)
+    }
+    
+    // Обязательно отписываемся от уведомлений при уничтожении презентера, чтобы не было утечек памяти
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func viewWillAppear() {
         loadAnalyticsData()
     }
     
+    @objc private func handleDataUpdate() {
+        // Когда прилетает уведомление, заново пересчитываем математику аналитики
+        loadAnalyticsData()
+    }
+    
     private func loadAnalyticsData() {
-        // 1. Считываем все расходы из базы данных Core Data
         let expenses = StorageManager.shared.fetchExpenses()
         
-        // 2. Если расходов вообще нет — отдаем команду показать Empty State заглушку
         guard !expenses.isEmpty else {
             view?.showEmptyState()
             return
         }
         
-        // 3. Считаем общую сумму всех трат
         let totalSum = expenses.reduce(0.0) { $0 + $1.amount }
-        
-        // 4. Пропускаем массив расходов через наш математический сервис из Дня 16
         let analyticsData = AnalyticsService.shared.calculateAnalytics(from: expenses)
         
-        // 5. Передаем готовые расчеты во View для отрисовки интерфейса
         view?.showAnalytics(totalAmount: totalSum, data: analyticsData)
     }
 }
-

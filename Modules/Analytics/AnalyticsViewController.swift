@@ -104,13 +104,20 @@ final class AnalyticsViewController: UIViewController {
 extension AnalyticsViewController: AnalyticsViewProtocol {
     
     func showAnalytics(totalAmount: Double, data: [CategoryAnalytics]) {
-        // Форматируем общую сумму расходов красивой валютной строкой
         let amountNumber = NSNumber(value: totalAmount)
         totalAmountLabel.text = NumberFormatter.expenseCurrency.string(from: amountNumber) ?? "\(totalAmount) ₽"
         
-        // Очищаем старые графики перед новой отрисовкой (напишем логику графиков в День 18)
+        // Очищаем старые графики перед новой отрисовкой
         chartsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        // 🌟 Динамически добавляем кастомные полосы-индикаторы в вертикальный стек
+        data.forEach { item in
+            let indicatorView = ProgressIndicatorView()
+            indicatorView.configure(with: item)
+            chartsStackView.addArrangedSubview(indicatorView)
+        }
     }
+
     
     func showEmptyState() {
         totalAmountLabel.text = "0 ₽"
