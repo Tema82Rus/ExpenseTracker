@@ -38,17 +38,20 @@ final class StorageManager {
     // 3. Сохранение изменений контекста на диск
     func saveContext() {
         let context = persistentContainer.viewContext
-        // Проверяем, есть ли вообще изменения в оперативной памяти, чтобы не дёргать диск вхолостую
         if context.hasChanges {
             do {
                 try context.save()
                 print("📋 Core Data: Данные успешно сохранены на диск.")
+                
+                // 🌟 Оповещаем все заинтересованные экраны об изменении данных
+                NotificationCenter.default.post(name: .didUpdateCoreData, object: nil)
             } catch {
                 let nserror = error as NSError
                 print("❌ Core Data: Ошибка сохранения контекста: \(nserror), \(nserror.userInfo)")
             }
         }
     }
+
     
     // MARK: - CRUD: Create (Сохранение расхода)
     
@@ -137,4 +140,8 @@ final class StorageManager {
         }
     }
     
+}
+
+extension Notification.Name {
+    static let didUpdateCoreData = Notification.Name("didUpdateCoreData")
 }

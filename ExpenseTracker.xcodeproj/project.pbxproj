@@ -16,6 +16,7 @@
 		BC9E1B23307E4B7100712F83 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E1B22307E4B7100712F83 /* AnalyticsService.swift */; };
 		BC9E1B40307E4CAE00712F83 /* AnalyticsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E1B3F307E4CAE00712F83 /* AnalyticsPresenter.swift */; };
 		BC9E1B42307E4CCE00712F83 /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E1B41307E4CCE00712F83 /* AnalyticsViewController.swift */; };
+		BC9E1B5F307E5EF500712F83 /* ProgressIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E1B5E307E5EF500712F83 /* ProgressIndicatorView.swift */; };
 		BCFA406930743735002468A3 /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA406830743735002468A3 /* ExpenseTableViewCell.swift */; };
 		BCFA406B307438AD002468A3 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA406A307438AD002468A3 /* Formatters.swift */; };
 		BCFA408830754AE0002468A3 /* AddExpensePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA408730754AE0002468A3 /* AddExpensePresenter.swift */; };
@@ -34,6 +35,7 @@
 		BC9E1B22307E4B7100712F83 /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		BC9E1B3F307E4CAE00712F83 /* AnalyticsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsPresenter.swift; sourceTree = "<group>"; };
 		BC9E1B41307E4CCE00712F83 /* AnalyticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewController.swift; sourceTree = "<group>"; };
+		BC9E1B5E307E5EF500712F83 /* ProgressIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorView.swift; sourceTree = "<group>"; };
 		BCFA406830743735002468A3 /* ExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewCell.swift; sourceTree = "<group>"; };
 		BCFA406A307438AD002468A3 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		BCFA408730754AE0002468A3 /* AddExpensePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensePresenter.swift; sourceTree = "<group>"; };
@@ -143,10 +145,19 @@
 		BC9E1B3E307E4C9600712F83 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
+				BC9E1B5D307E5EEA00712F83 /* Views */,
 				BC9E1B3F307E4CAE00712F83 /* AnalyticsPresenter.swift */,
 				BC9E1B41307E4CCE00712F83 /* AnalyticsViewController.swift */,
 			);
 			path = Analytics;
+			sourceTree = "<group>";
+		};
+		BC9E1B5D307E5EEA00712F83 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BC9E1B5E307E5EF500712F83 /* ProgressIndicatorView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		BCFA406730743722002468A3 /* Cell */ = {
@@ -247,6 +258,7 @@
 				BC9E1B40307E4CAE00712F83 /* AnalyticsPresenter.swift in Sources */,
 				BCFA408A30754B26002468A3 /* AddExpenseViewController.swift in Sources */,
 				BC7448883073BA0200094AD2 /* MainPresenter.swift in Sources */,
+				BC9E1B5F307E5EF500712F83 /* ProgressIndicatorView.swift in Sources */,
 				BCFA40A6307553F5002468A3 /* AddExpenseDelegate.swift in Sources */,
 				BC74484A3072F62500094AD2 /* StorageManager.swift in Sources */,
 				BCFA408830754AE0002468A3 /* AddExpensePresenter.swift in Sources */,
