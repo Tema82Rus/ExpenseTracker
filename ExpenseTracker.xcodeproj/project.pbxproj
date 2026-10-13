@@ -13,6 +13,7 @@
 		BC74484A3072F62500094AD2 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7448493072F62500094AD2 /* StorageManager.swift */; };
 		BC7448883073BA0200094AD2 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7448873073BA0200094AD2 /* MainPresenter.swift */; };
 		BC74488A3073BB3100094AD2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7448893073BB3100094AD2 /* MainViewController.swift */; };
+		BC9E1B23307E4B7100712F83 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E1B22307E4B7100712F83 /* AnalyticsService.swift */; };
 		BCFA406930743735002468A3 /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA406830743735002468A3 /* ExpenseTableViewCell.swift */; };
 		BCFA406B307438AD002468A3 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA406A307438AD002468A3 /* Formatters.swift */; };
 		BCFA408830754AE0002468A3 /* AddExpensePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA408730754AE0002468A3 /* AddExpensePresenter.swift */; };
@@ -28,6 +29,7 @@
 		BC7448493072F62500094AD2 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		BC7448873073BA0200094AD2 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		BC7448893073BB3100094AD2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		BC9E1B22307E4B7100712F83 /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		BCFA406830743735002468A3 /* ExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewCell.swift; sourceTree = "<group>"; };
 		BCFA406A307438AD002468A3 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		BCFA408730754AE0002468A3 /* AddExpensePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensePresenter.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				BC7448493072F62500094AD2 /* StorageManager.swift */,
+				BC9E1B22307E4B7100712F83 /* AnalyticsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				BC74484A3072F62500094AD2 /* StorageManager.swift in Sources */,
 				BCFA408830754AE0002468A3 /* AddExpensePresenter.swift in Sources */,
 				BC74488A3073BB3100094AD2 /* MainViewController.swift in Sources */,
+				BC9E1B23307E4B7100712F83 /* AnalyticsService.swift in Sources */,
 				BC74482D3072E58100094AD2 /* ExpenseModel.xcdatamodeld in Sources */,
 				BC41F427305461E800FE25F8 /* Expense.swift in Sources */,
 			);
