@@ -13,25 +13,46 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
-        // 1. Проверяем, что пришедшая сцена — это UIWindowScene
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        // 2. Создаем окно размером во весь экран
-        let window = UIWindow(windowScene: windowScene)
-        
-        // 3. Создаем основной экран и связываем его с Presenter
+        // 1. Инициализируем и собираем первый модуль: Главный экран (Список расходов)
         let mainVC = MainViewController()
-        let presenter = MainPresenter(view: mainVC)
-        mainVC.presenter = presenter
+        let mainPresenter = MainPresenter(view: mainVC)
+        mainVC.presenter = mainPresenter
         
-        // 4. Оборачиваем экран в UINavigationController
-        let navigationController = UINavigationController(rootViewController: mainVC)
+        // Оборачиваем главный экран в NavigationController для верхнего бара с кнопкой "+"
+        let mainNavController = UINavigationController(rootViewController: mainVC)
+        // Задаем заголовки для вкладки таб-бара
+        mainNavController.tabBarItem = UITabBarItem(
+            title: "Расходы",
+            image: UIImage(systemName: "creditcard"), // В День 20 заменим на SF Symbols красиво
+            tag: 0
+        )
         
-        // 5. Устанавливаем его как главный экран приложения
-        window.rootViewController = navigationController
+        // 2. Инициализируем и собираем второй модуль: Экран аналитики
+        let analyticsVC = AnalyticsViewController()
+        let analyticsPresenter = AnalyticsPresenter(view: analyticsVC)
+        analyticsVC.presenter = analyticsPresenter
         
-        // 6. Показываем окно на экране
+        // Оборачиваем аналитику в собственный NavigationController для красивого верхнего бара
+        let analyticsNavController = UINavigationController(rootViewController: analyticsVC)
+        analyticsNavController.tabBarItem = UITabBarItem(
+            title: "Аналитика",
+            image: UIImage(systemName: "chart.pie.fill"),
+            tag: 1
+        )
+        
+        // 3. Создаем корневой UITabBarController и передаем ему оба наших модуля
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [mainNavController, analyticsNavController]
+        
+        // Настраиваем внешний вид таб-бара под современные стандарты iOS
+        tabBarController.tabBar.tintColor = .systemBlue // Цвет активной вкладки
+        tabBarController.tabBar.backgroundColor = .systemBackground // Непрозрачный адаптивный фон
+        
+        // 4. Устанавливаем таб-бар в качестве корневого контроллера окна приложения
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = tabBarController
         self.window = window
         window.makeKeyAndVisible()
     }
