@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Задаем заголовки для вкладки таб-бара
         mainNavController.tabBarItem = UITabBarItem(
             title: "Расходы",
-            image: UIImage(systemName: "creditcard"), // В День 20 заменим на SF Symbols красиво
+            image: UIImage(systemName: "creditcard"),
             tag: 0
         )
         
