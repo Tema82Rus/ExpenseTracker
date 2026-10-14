@@ -14,8 +14,29 @@ final class AddExpenseViewController: UIViewController {
     // Выбранная категория (по умолчанию первая)
     private var selectedCategory: Category = Category.allCases.first ?? .food
     
-    // Массив кнопок для управления их состоянием (подсветкой)
-    private var categoryButtons: [UIButton] = []
+    ///индекс выбранной ячейки
+    private var selectedCategoryIndex: Int = 0
+    
+    /// Инициализируем коллекцию кодом с горизонтальным скроллом
+    private lazy var categoriesCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 8
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize // Ячейки сами подгонятся под длину текста категории
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.alwaysBounceHorizontal = true
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Регистрируем стандартную ячейку (для экономии времени используем встроенную)
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "CategoryCell")
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        return collectionView
+    }()
     
     // --- UI ЭЛЕМЕНТЫ ДНЯ 11 ---
     private let titleLabel: UILabel = {
@@ -51,34 +72,6 @@ final class AddExpenseViewController: UIViewController {
         label.textColor = .secondaryLabel
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-    }()
-    
-    // Горизонтальный стек для кнопок категорий
-    private lazy var categoriesStackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.distribution = .fillEqually
-        stack.spacing = 2
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        
-        // 🌟 Динамически генерируем кнопки на основе Category.allCases
-        Category.allCases.forEach { category in
-            let button = UIButton(type: .system)
-            // Выводим иконку и чистый текст (зависит от твоей реализации enum)
-            let title = "\(category.icon) \(category.rawValue)"
-            button.setTitle(title, for: .normal)
-            button.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
-            button.layer.cornerRadius = 8
-            button.layer.borderWidth = 1
-            button.tintColor = .label
-            
-            // Настраиваем тег или таргет для определения нажатой кнопки
-            button.addTarget(self, action: #selector(categoryButtonTapped(_:)), for: .touchUpInside)
-            
-            stack.addArrangedSubview(button)
-            categoryButtons.append(button)
-        }
-        return stack
     }()
     
     private let dateTitleLabel: UILabel = {
@@ -125,7 +118,6 @@ final class AddExpenseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        updateCategoryButtonsUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -144,7 +136,8 @@ final class AddExpenseViewController: UIViewController {
         view.addSubview(amountTextField)
         view.addSubview(dividerView)
         view.addSubview(categoryTitleLabel)
-        view.addSubview(categoriesStackView)
+//        view.addSubview(categoriesStackView)
+        view.addSubview(categoriesCollectionView)
         view.addSubview(dateTitleLabel)
         view.addSubview(datePicker)
         view.addSubview(noteTextField)
@@ -167,12 +160,14 @@ final class AddExpenseViewController: UIViewController {
             categoryTitleLabel.topAnchor.constraint(equalTo: dividerView.bottomAnchor, constant: 24),
             categoryTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
-            categoriesStackView.topAnchor.constraint(equalTo: categoryTitleLabel.bottomAnchor, constant: 10),
-            categoriesStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            categoriesStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            categoriesStackView.heightAnchor.constraint(equalToConstant: 40),
+            // Констрейнты для новой коллекции категорий
+            categoriesCollectionView.topAnchor.constraint(equalTo: categoryTitleLabel.bottomAnchor, constant: 10),
+            categoriesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            categoriesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            categoriesCollectionView.heightAnchor.constraint(equalToConstant: 44), // Чуть увеличим высоту для удобства тапа
             
-            dateTitleLabel.topAnchor.constraint(equalTo: categoriesStackView.bottomAnchor, constant: 24),
+            
+            dateTitleLabel.topAnchor.constraint(equalTo: categoriesCollectionView.bottomAnchor, constant: 24),
             dateTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             dateTitleLabel.centerYAnchor.constraint(equalTo: datePicker.centerYAnchor),
             
@@ -192,32 +187,9 @@ final class AddExpenseViewController: UIViewController {
     
     // MARK: - Действия (Actions)
     
-    @objc private func categoryButtonTapped(_ sender: UIButton) {
-        // Определяем, на какую категорию нажал пользователь
-        guard let buttonIndex = categoryButtons.firstIndex(of: sender) else { return }
-        selectedCategory = Category.allCases[buttonIndex]
-        updateCategoryButtonsUI()
-    }
-    
     @objc private func cancelButtonTapped() {
         // Закрываем модальный экран
         dismiss(animated: true, completion: nil)
-    }
-    
-    // Визуальное обновление кнопок: выбранная подсвечивается, остальные тусклые
-    private func updateCategoryButtonsUI() {
-        for (index, button) in categoryButtons.enumerated() {
-            let isSelected = (Category.allCases[index] == selectedCategory)
-            if isSelected {
-                button.backgroundColor = .label
-                button.setTitleColor(.systemBackground, for: .normal)
-                button.layer.borderColor = UIColor.label.cgColor
-            } else {
-                button.backgroundColor = .systemBackground
-                button.setTitleColor(.label, for: .normal)
-                button.layer.borderColor = UIColor.separator.cgColor
-            }
-        }
     }
     
     @objc private func saveButtonTapped() {
@@ -258,6 +230,65 @@ extension AddExpenseViewController: AddExpenseViewProtocol {
         present(alert, animated: true)
     }
 }
+
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegate
+extension AddExpenseViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return Category.allCases.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath)
+        
+        // Очищаем старые субвью перед переиспользованием ячейки
+        cell.contentView.subviews.forEach { $0.removeFromSuperview() }
+        
+        let category = Category.allCases[indexPath.item]
+        
+        // 1. Создаем кастомный лейбл текста внутри ячейки
+        let label = UILabel()
+        label.text = "\(category.icon) \(category.rawValue)"
+        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        cell.contentView.addSubview(label)
+        
+        // Привязываем отступы текста внутри ячейки
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: cell.contentView.topAnchor, constant: 8),
+            label.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor, constant: -8),
+            label.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 16),
+            label.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -16)
+        ])
+        
+        // 2. Стилизуем ячейку в зависимости от того, выбрана она или нет
+        cell.layer.cornerRadius = 8
+        cell.layer.borderWidth = 1
+        
+        let isSelected = (indexPath.item == selectedCategoryIndex)
+        if isSelected {
+            cell.backgroundColor = .label
+            label.textColor = .systemBackground
+            cell.layer.borderColor = UIColor.label.cgColor
+        } else {
+            cell.backgroundColor = .systemBackground
+            label.textColor = .label
+            cell.layer.borderColor = UIColor.separator.cgColor
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Сохраняем индекс выбранной категории
+        selectedCategoryIndex = indexPath.item
+        selectedCategory = Category.allCases[indexPath.item]
+        
+        // Перезапускаем коллекцию с красивой плавной анимацией обновления выбранного элемента
+        collectionView.reloadData()
+    }
+}
+
 
 // MARK: - SwiftUI Preview
 #if DEBUG
