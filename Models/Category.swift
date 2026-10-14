@@ -5,7 +5,7 @@
 //  Created by Artem Yaroshenko on 11.09.2026.
 //
 
-import Foundation
+import UIKit
 
 /// Категории расходов приложения.
 /// Протокол CaseIterable позволяет получить массив всех категорий через Category.allCases.
@@ -22,6 +22,15 @@ enum Category: String, CaseIterable {
         case .transport: return "🚕"
         case .leisure: return "🎬"
         case .other: return "🎲"
+        }
+    }
+    
+    var color: UIColor {
+        switch self {
+        case .food: return .systemOrange      // Оранжевый для еды
+        case .transport: return .systemCyan    // Голубой для транспорта
+        case .leisure: return .systemPurple    // Фиолетовый для отдыха
+        case .other: return .systemGray        // Серый для остальных трат
         }
     }
 }

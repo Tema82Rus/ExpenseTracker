@@ -104,24 +104,17 @@ final class ProgressIndicatorView: UIView {
         let amountNumber = NSNumber(value: model.totalAmount)
         amountLabel.text = NumberFormatter.expenseCurrency.string(from: amountNumber) ?? "\(model.totalAmount) ₽"
         
-        // Подбираем цвет индикатора под категорию (для красоты)
-        switch model.category {
-        case .food: progressView.backgroundColor = .systemOrange
-        case .transport: progressView.backgroundColor = .systemCyan
-        case .leisure: progressView.backgroundColor = .systemPurple
-        case .other: progressView.backgroundColor = .systemGray
-        }
+        // 🌟 РЕФАКТОРИНГ ДНЯ 20: Вместо switch берем цвет напрямую из enum категории!
+        progressView.backgroundColor = model.category.color
         
-        // Деактивируем старую ширину, задаем новый коэффициент заполнения (от 0.0 до 1.0)
+        // Обновление констрейнтов ширины полосы прогресса (остается прежним)
         progressWidthConstraint?.isActive = false
         progressWidthConstraint = progressView.widthAnchor.constraint(equalTo: trackView.widthAnchor, multiplier: CGFloat(model.percentage))
         progressWidthConstraint?.isActive = true
         
-        // Плавная анимация проявления полоски
         setNeedsLayout()
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
             self.layoutIfNeeded()
         }, completion: nil)
     }
 }
-
